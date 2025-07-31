@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content animate__animated animate__fadeInUp">
+        <h1>Welcome to PageLinking</h1>
+        <p>Seamlessly navigate between pages with style and advanced functionality</p>
+        <div class="hero-btns">
+            <a href="{{ url_for('about') }}" class="btn btn-primary">Discover More</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-secondary">Contact Us</a>
+        </div>
+    </div>
+    <div class="hero-image">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+</section>
+
+<section class="features">
+    <div class="container">
+        <div class="section-header">
+            <h2>Why Choose Us</h2>
+            <p>We provide cutting-edge solutions for all your web needs</p>
+        </div>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Lightning Fast</h3>
+                <p>Optimized for speed and performance to deliver the best user experience.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Secure & Reliable</h3>
+                <p>Enterprise-grade security to protect your data and ensure reliability.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Fully Responsive</h3>
+                <p>Looks perfect on all devices from smartphones to desktops.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>Easy Customization</h3>
+                <p>Flexible and easy to customize to fit your specific requirements.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="latest-posts">
+    <div class="container">
+        <div class="section-header">
+            <h2>Latest From Our Blog</h2>
+            <p>Stay updated with the latest trends and technologies</p>
+        </div>
+        
+        <div class="posts-grid">
+            {% for post in posts %}
+            <div class="post-card">
+                <div class="post-image">
+                    <img src="{{ url_for('static', filename='images/' + post.image) }}" alt="{{ post.title }}">
+                    <div class="post-date">
+                        <span>{{ post.date }}</span>
+                    </div>
+                </div>
+                <div class="post-content">
+                    <h3><a href="{{ url_for('blog_post', post_id=post.id) }}">{{ post.title }}</a></h3>
+                    <p>{{ post.content[:100] }}...</p>
+                    <div class="post-meta">
+                        <span><i class="fas fa-user"></i> {{ post.author }}</span>
+                        <a href="{{ url_for('blog_post', post_id=post.id) }}" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center">
+            <a href="{{ url_for('blog') }}" class="btn btn-outline">View All Posts</a>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials">
+    <div class="container">
+        <div class="section-header">
+            <h2>What Our Clients Say</h2>
+            <p>We take pride in delivering exceptional service to our clients</p>
+        </div>
+        
+        <div class="testimonial-slider">
+            <div class="testimonial active">
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>PageLinker has transformed our online presence. The navigation is seamless and the design is stunning!</p>
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                <div class="client">
+                    <div class="client-image">
+                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Sarah Johnson">
+                    </div>
+                    <div class="client-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>CEO, TechSolutions</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial">
+                <div class="quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>The advanced features and smooth page transitions have significantly improved our user engagement metrics.</p>
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                <div class="client">
+                    <div class="client-image">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
+                    </div>
+                    <div class="client-info">
+                        <h4>Michael Chen</h4>
+                        <p>Marketing Director, GlobalCorp</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Get Started?</h2>
+            <p>Join thousands of satisfied customers using PageLinker for their websites</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-light">Contact Us Today</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
